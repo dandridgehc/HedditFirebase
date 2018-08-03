@@ -54,11 +54,11 @@ export default class Dashboard extends React.Component{
            });
 
            console.log("bleacher articles:", bleacherReportArticles);
-           firebase.database().ref('/scaped-sites').push({
-             screpedData: bleacherReportArticles,
+           firebase.database().ref('/scraped-sites').push({
+             scrapedData: bleacherReportArticles,
              uid: this.props.uid
            })
-           // this.setState({ data: bleacherReportArticles }, () => console.log(this.state));
+           this.setState({ data: bleacherReportArticles }, () => console.log(this.state));
        });
    }
 
@@ -67,10 +67,10 @@ export default class Dashboard extends React.Component{
     const listItems = this.props.items.map((eachItem, key) =>
       <p key={eachItem.key}>{eachItem.item} <button onClick={() => this.deleteItem(eachItem.key)}>x</button></p>
     );
-
+ 
     /// here
     const listSites = this.props.sites.map((eachItem, key) =>
-      <p key={eachItem.key}>{eachItem.screpedData[0]} <button onClick={() => this.deleteItem(eachItem.key)}>x</button></p>
+      <p key={eachItem.key}>{eachItem.scrapedData} <button onClick={() => this.deleteItem(eachItem.key)}>x</button></p>
     );
 
     return (
